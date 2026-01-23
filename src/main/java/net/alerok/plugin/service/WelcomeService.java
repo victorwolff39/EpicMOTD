@@ -3,7 +3,6 @@ package net.alerok.plugin.service;
 import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
-import com.hypixel.hytale.server.core.util.EventTitleUtil;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
 import net.alerok.plugin.config.EpicMOTDConfig;
 import net.alerok.plugin.model.MessageModel;
@@ -16,8 +15,12 @@ public class WelcomeService {
     private final MessageService messageService = new MessageService();
     private final TitleService titleService = new TitleService();
 
-    public WelcomeService(EpicMOTDConfig config) {
+    public WelcomeService(final EpicMOTDConfig config) {
         this.config = config;
+    }
+
+    public void welcomePlayer(final PlayerRef playerRef) {
+        showWelcomeToast(playerRef);
     }
 
     public void sendWelcomeMessage(final PlayerRef playerRef) {
@@ -37,7 +40,8 @@ public class WelcomeService {
                         .title(config.getTitle())
                         .subtitle(config.getSubtitle())
                         .epic(true)
-                        .build());
+                        .build()
+        );
     }
 
     public void showWelcomeToast(final PlayerRef playerRef) {
