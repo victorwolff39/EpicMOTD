@@ -42,7 +42,7 @@ public class EpicMOTD extends JavaPlugin {
     private void welcomePlayer() {
         this.getEventRegistry().register(
                 PlayerConnectEvent.class, event ->
-                        new WelcomeService(this.config.get()).showWelcomeToast(event.getPlayerRef())
+                        new WelcomeService(this.config.get()).welcomePlayer(event.getPlayerRef())
         );
     }
 

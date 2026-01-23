@@ -1,15 +1,20 @@
 package net.alerok.plugin.service;
 
+import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import net.alerok.plugin.config.EpicMOTDConfig;
+import net.alerok.plugin.enumeration.MessageType;
 import net.alerok.plugin.model.MessageModel;
 import net.alerok.plugin.model.TitleModel;
 import net.alerok.plugin.model.ToastModel;
 
+import java.util.Arrays;
+
 public class WelcomeService {
 
     private final EpicMOTDConfig config;
+    private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
     private final MessageService messageService = new MessageService();
     private final TitleService titleService = new TitleService();
@@ -20,10 +25,16 @@ public class WelcomeService {
     }
 
     public void welcomePlayer(final PlayerRef playerRef) {
-        showWelcomeToast(playerRef);
+        var messageType = MessageType.fromString(config.getMessageType());
+
+        switch (messageType) {
+            case TITLE -> showWelcomeTitle(playerRef);
+            case TOAST -> showWelcomeToast(playerRef);
+            case MESSAGE -> sendWelcomeMessage(playerRef);
+        }
     }
 
-    public void sendWelcomeMessage(final PlayerRef playerRef) {
+    private void sendWelcomeMessage(final PlayerRef playerRef) {
 
         messageService.sendMessage(
                 MessageModel.builder()
@@ -33,7 +44,7 @@ public class WelcomeService {
         );
     }
 
-    public void showWelcomeTitle(final PlayerRef playerRef) {
+    private void showWelcomeTitle(final PlayerRef playerRef) {
 
         titleService.showTitle(
                 TitleModel.builder()
@@ -45,7 +56,7 @@ public class WelcomeService {
         );
     }
 
-    public void showWelcomeToast(final PlayerRef playerRef) {
+    private void showWelcomeToast(final PlayerRef playerRef) {
 
         toastService.showToast(
                 ToastModel.builder()
