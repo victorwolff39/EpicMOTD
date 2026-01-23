@@ -3,6 +3,7 @@ package net.alerok.plugin;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import net.alerok.plugin.command.MOTDCommand;
 
 import javax.annotation.Nonnull;
 
@@ -19,5 +20,7 @@ public class EpicMOTD extends JavaPlugin {
     protected void setup() {
         LOGGER.atInfo().log("Setting up plugin " + this.getName());
         this.getCommandRegistry().registerCommand(new ExampleCommand(this.getName(), this.getManifest().getVersion().toString()));
+        this.getCommandRegistry().registerCommand(new MOTDCommand());
     }
+
 }
