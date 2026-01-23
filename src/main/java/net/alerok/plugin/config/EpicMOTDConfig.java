@@ -24,11 +24,17 @@ public class EpicMOTDConfig {
                             (exConfig, aString, extraInfo) -> exConfig.subtitle = aString,
                             (exConfig, extraInfo) -> exConfig.subtitle)
                     .add()
+
+                    .append(new KeyedCodec<>("EpicTitle", Codec.BOOLEAN),
+                            (exConfig, aBoolean, extraInfo) -> exConfig.epicTitle = aBoolean,
+                            (exConfig, extraInfo) -> exConfig.epicTitle)
+                    .add()
                     .build();
 
     private String messageType = "TITLE";
     private String title = "Welcome to EpicMOTD plugin!";
     private String subtitle = "This is the default MOTD! You can change it in the configuration file at \"./net.alerok_EpicMOTD\".";
+    private Boolean epicTitle = true;
 
     public EpicMOTDConfig() {
     }

@@ -9,8 +9,6 @@ import net.alerok.plugin.model.MessageModel;
 import net.alerok.plugin.model.TitleModel;
 import net.alerok.plugin.model.ToastModel;
 
-import java.util.Arrays;
-
 public class WelcomeService {
 
     private final EpicMOTDConfig config;
@@ -51,7 +49,7 @@ public class WelcomeService {
                         .ref(playerRef)
                         .title(config.getTitle())
                         .subtitle(config.getSubtitle())
-                        .epic(true)
+                        .epic(config.getEpicTitle())
                         .build()
         );
     }
