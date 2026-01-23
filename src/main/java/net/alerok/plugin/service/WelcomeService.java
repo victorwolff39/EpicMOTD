@@ -7,33 +7,37 @@ import com.hypixel.hytale.server.core.util.EventTitleUtil;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
 import net.alerok.plugin.config.EpicMOTDConfig;
 import net.alerok.plugin.model.MessageModel;
+import net.alerok.plugin.model.TitleModel;
 
 public class WelcomeService {
 
     private final EpicMOTDConfig config;
 
     private final MessageService messageService = new MessageService();
+    private final TitleService titleService = new TitleService();
 
     public WelcomeService(EpicMOTDConfig config) {
         this.config = config;
     }
 
     public void sendWelcomeMessage(final PlayerRef playerRef) {
-        messageService.sendMessage(MessageModel.builder()
-                .ref(playerRef)
-                .body(config.getTitle())
-                .build()
+        messageService.sendMessage(
+                MessageModel.builder()
+                        .ref(playerRef)
+                        .body(config.getTitle())
+                        .build()
         );
     }
 
     public void showWelcomeTitle(final PlayerRef playerRef) {
 
-        EventTitleUtil.showEventTitleToPlayer(
-                playerRef,
-                Message.raw(config.getTitle()),
-                Message.raw(config.getSubtitle()),
-                true //ou false
-        );
+        titleService.showTitle(
+                TitleModel.builder()
+                        .ref(playerRef)
+                        .title(config.getTitle())
+                        .subtitle(config.getSubtitle())
+                        .epic(true)
+                        .build());
     }
 
     public void showWelcomeToast(final PlayerRef playerRef) {
