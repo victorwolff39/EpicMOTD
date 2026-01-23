@@ -1,11 +1,11 @@
 {
-    "Group": "Example",
-    "Name": "ExamplePlugin",
-    "Version": "0.0.2",
-    "Description": "An example plugin for HyTale!",
+    "Group": "net.alerok",
+    "Name": "EpicMOTD",
+    "Version": "1.0.0",
+    "Description": "Transform your MOTD into a cinematic banner that delivers a powerful first impression.",
     "Authors": [
         {
-            "Name": "It's you!"
+            "Name": "Victor Wolff"
         }
     ],
     "Website": "example.org",
@@ -17,6 +17,6 @@
         
     },
     "DisabledByDefault": false,
-    "Main": "org.example.plugin.ExamplePlugin",
+    "Main": "net.alerok.plugin.EpicMOTD",
     "IncludesAssetPack": true
 }
