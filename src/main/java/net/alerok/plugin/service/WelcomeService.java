@@ -1,12 +1,11 @@
 package net.alerok.plugin.service;
 
 import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
-import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
-import com.hypixel.hytale.server.core.util.NotificationUtil;
 import net.alerok.plugin.config.EpicMOTDConfig;
 import net.alerok.plugin.model.MessageModel;
 import net.alerok.plugin.model.TitleModel;
+import net.alerok.plugin.model.ToastModel;
 
 public class WelcomeService {
 
@@ -14,6 +13,7 @@ public class WelcomeService {
 
     private final MessageService messageService = new MessageService();
     private final TitleService titleService = new TitleService();
+    private final ToastService toastService = new ToastService();
 
     public WelcomeService(final EpicMOTDConfig config) {
         this.config = config;
@@ -24,6 +24,7 @@ public class WelcomeService {
     }
 
     public void sendWelcomeMessage(final PlayerRef playerRef) {
+
         messageService.sendMessage(
                 MessageModel.builder()
                         .ref(playerRef)
@@ -45,12 +46,14 @@ public class WelcomeService {
     }
 
     public void showWelcomeToast(final PlayerRef playerRef) {
-        NotificationUtil.sendNotification(
-                playerRef.getPacketHandler(),
-                Message.raw(config.getTitle()).bold(true),
-                Message.raw(config.getSubtitle()),
-                "motd",                    // id/categoria (pode ser qualquer string)
-                NotificationStyle.Default  // Default / Danger / Warning / Success
+
+        toastService.showToast(
+                ToastModel.builder()
+                        .ref(playerRef)
+                        .title(config.getTitle())
+                        .subtitle(config.getSubtitle())
+                        .notificationStyle(NotificationStyle.Default)
+                        .build()
         );
     }
 
