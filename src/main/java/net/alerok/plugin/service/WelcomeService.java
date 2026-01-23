@@ -6,24 +6,29 @@ import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.util.EventTitleUtil;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
+import net.alerok.plugin.config.EpicMOTDConfig;
 
 public class WelcomeService {
 
+    private final EpicMOTDConfig config;
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
+    public WelcomeService(EpicMOTDConfig config) {
+        this.config = config;
+    }
+
     public void sendWelcomeMessage(final PlayerRef playerRef) {
-        LOGGER.atInfo().log("Entity added to the system");
 
         if (playerRef != null)
-            playerRef.sendMessage(Message.raw("Jubileu, vc n sabe nem eu..."));
+            playerRef.sendMessage(Message.raw(config.getTitle()));
     }
 
     public void showWelcomeTitle(final PlayerRef playerRef) {
 
         EventTitleUtil.showEventTitleToPlayer(
                 playerRef,
-                Message.raw("Hello World!"),
-                Message.raw("Your title server!"),
+                Message.raw(config.getTitle()),
+                Message.raw(config.getSubtitle()),
                 true //ou false
         );
     }
@@ -31,8 +36,8 @@ public class WelcomeService {
     public void showWelcomeToast(final PlayerRef playerRef) {
         NotificationUtil.sendNotification(
                 playerRef.getPacketHandler(),
-                Message.raw("Welcome!").bold(true),
-                Message.raw("Prepare for an epic adventure."),
+                Message.raw(config.getTitle()).bold(true),
+                Message.raw(config.getSubtitle()),
                 "motd",                    // id/categoria (pode ser qualquer string)
                 NotificationStyle.Default  // Default / Danger / Warning / Success
         );

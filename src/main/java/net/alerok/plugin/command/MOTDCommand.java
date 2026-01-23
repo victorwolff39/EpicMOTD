@@ -9,12 +9,16 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.EventTitleUtil;
+import net.alerok.plugin.config.EpicMOTDConfig;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class MOTDCommand extends AbstractPlayerCommand {
 
-    public MOTDCommand() {
+    private final EpicMOTDConfig config;
+
+    public MOTDCommand(final EpicMOTDConfig config) {
         super("emotd", "Sends the Message of the Day again.");
+        this.config = config;
     }
 
     @Override
@@ -26,8 +30,8 @@ public class MOTDCommand extends AbstractPlayerCommand {
     ) {
         EventTitleUtil.showEventTitleToPlayer(
                 playerRef,
-                Message.raw("Hello World!"),
-                Message.raw("Your title server!"),
+                Message.raw(config.getTitle()),
+                Message.raw(config.getSubtitle()),
                 true
         );
     }
