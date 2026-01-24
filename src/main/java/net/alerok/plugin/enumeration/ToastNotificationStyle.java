@@ -1,7 +1,6 @@
 package net.alerok.plugin.enumeration;
 
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.protocol.packets.interface_.Notification;
 import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
 
 import java.text.MessageFormat;

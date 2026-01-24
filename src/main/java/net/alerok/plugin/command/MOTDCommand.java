@@ -14,13 +14,10 @@ import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 public class MOTDCommand extends AbstractPlayerCommand {
 
-    private final Config<EpicMOTDConfig> config;
-
     private final WelcomeService welcomeService;
 
     public MOTDCommand(final Config<EpicMOTDConfig> config) {
         super("emotd", "Sends the Message of the Day again.");
-        this.config = config;
         this.welcomeService = new WelcomeService(config);
     }
 
