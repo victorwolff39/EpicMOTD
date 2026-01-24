@@ -8,11 +8,8 @@ import net.alerok.plugin.config.EpicMOTDConfig;
 
 public class EMOTDCommandCollection extends AbstractCommandCollection {
 
-    private final Config<EpicMOTDConfig> config;
-
     public EMOTDCommandCollection(final Config<EpicMOTDConfig> config) {
         super("emotd", "Controls the EpicMOTD plugin.");
-        this.config = config;
 
         addSubCommand(new ReloadCommand(config));
         addSubCommand(new PreviewCommand(config));

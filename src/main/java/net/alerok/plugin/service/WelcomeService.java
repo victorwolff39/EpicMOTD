@@ -13,7 +13,6 @@ import net.alerok.plugin.model.ToastModel;
 public class WelcomeService {
 
     private final Config<EpicMOTDConfig> config;
-    private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
     private final MessageService messageService = new MessageService();
     private final TitleService titleService = new TitleService();

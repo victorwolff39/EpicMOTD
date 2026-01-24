@@ -19,6 +19,8 @@ public class PreviewCommand extends AbstractPlayerCommand {
     public PreviewCommand(final Config<EpicMOTDConfig> config) {
         super("preview", "Preview the current Message of the Day.");
         this.welcomeService = new WelcomeService(config);
+
+        addAliases("view", "show");
     }
 
     @Override

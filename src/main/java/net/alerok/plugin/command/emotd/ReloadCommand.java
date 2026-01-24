@@ -2,6 +2,7 @@ package net.alerok.plugin.command.emotd;
 
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -29,6 +30,7 @@ public class ReloadCommand extends AbstractPlayerCommand {
     ) {
 
         config.load();
-        LOGGER.atInfo().log("Abacaxi: " + config.get().getTitle());
+
+        playerRef.sendMessage(Message.raw("EpicMOTD config reloaded."));
     }
 }
