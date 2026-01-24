@@ -13,8 +13,8 @@ import javax.annotation.Nonnull;
 
 public class EpicMOTD extends JavaPlugin {
 
-    private final Config<EpicMOTDConfig> config;
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
+    private final Config<EpicMOTDConfig> config;
 
     public EpicMOTD(@Nonnull JavaPluginInit init) {
         super(init);
@@ -31,6 +31,10 @@ public class EpicMOTD extends JavaPlugin {
 
         registerCommands();
         welcomePlayer();
+    }
+
+    public static HytaleLogger getPluginLogger() {
+        return LOGGER;
     }
 
     private void saveConfig() {

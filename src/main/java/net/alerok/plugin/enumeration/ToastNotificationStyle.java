@@ -1,10 +1,11 @@
 package net.alerok.plugin.enumeration;
 
-import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
+
+import static net.alerok.plugin.EpicMOTD.getPluginLogger;
 
 public enum ToastNotificationStyle {
 
@@ -14,8 +15,6 @@ public enum ToastNotificationStyle {
     DANGER("Danger");
 
     private final String value;
-
-    private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
     ToastNotificationStyle(String value) {
         this.value = value;
@@ -31,7 +30,7 @@ public enum ToastNotificationStyle {
         try {
             notificationStyle = ToastNotificationStyle.valueOf(type);
         } catch (IllegalArgumentException e) {
-            LOGGER.atWarning().log(
+            getPluginLogger().atWarning().log(
                     MessageFormat.format("Invalid toast notification style: [{0}], supported types are: {1}. Fallback type [{2}] applied.",
                             type,
                             Arrays.toString(ToastNotificationStyle.values()),
