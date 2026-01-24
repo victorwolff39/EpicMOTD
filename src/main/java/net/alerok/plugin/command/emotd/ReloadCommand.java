@@ -1,8 +1,7 @@
-package net.alerok.plugin.command;
+package net.alerok.plugin.command.emotd;
 
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
-import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -12,13 +11,12 @@ import com.hypixel.hytale.server.core.util.Config;
 import net.alerok.plugin.config.EpicMOTDConfig;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
-public class ReloadConfigCommand extends AbstractPlayerCommand {
+public class ReloadCommand extends AbstractPlayerCommand {
 
     private final Config<EpicMOTDConfig> config;
-    private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
-    public ReloadConfigCommand(Config<EpicMOTDConfig> config) {
-        super("emotd-reload", "Reloads config file.");
+    public ReloadCommand(Config<EpicMOTDConfig> config) {
+        super("reload", "Reloads config file.");
         this.config = config;
     }
 

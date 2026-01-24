@@ -1,4 +1,4 @@
-package net.alerok.plugin.command;
+package net.alerok.plugin.command.emotd;
 
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
@@ -12,12 +12,12 @@ import net.alerok.plugin.config.EpicMOTDConfig;
 import net.alerok.plugin.service.WelcomeService;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
-public class MOTDCommand extends AbstractPlayerCommand {
+public class PreviewCommand extends AbstractPlayerCommand {
 
     private final WelcomeService welcomeService;
 
-    public MOTDCommand(final Config<EpicMOTDConfig> config) {
-        super("emotd", "Sends the Message of the Day again.");
+    public PreviewCommand(final Config<EpicMOTDConfig> config) {
+        super("preview", "Preview the current Message of the Day.");
         this.welcomeService = new WelcomeService(config);
     }
 

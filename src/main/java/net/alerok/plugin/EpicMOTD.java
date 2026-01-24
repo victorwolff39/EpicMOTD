@@ -5,8 +5,7 @@ import com.hypixel.hytale.server.core.event.events.player.PlayerConnectEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.util.Config;
-import net.alerok.plugin.command.MOTDCommand;
-import net.alerok.plugin.command.ReloadConfigCommand;
+import net.alerok.plugin.command.EMOTDCommandCollection;
 import net.alerok.plugin.config.EpicMOTDConfig;
 import net.alerok.plugin.service.WelcomeService;
 
@@ -48,8 +47,7 @@ public class EpicMOTD extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.getCommandRegistry().registerCommand(new MOTDCommand(config));
-        this.getCommandRegistry().registerCommand(new ReloadConfigCommand(config));
+        this.getCommandRegistry().registerCommand(new EMOTDCommandCollection(config));
     }
 
 }
