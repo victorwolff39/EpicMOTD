@@ -1,6 +1,5 @@
 package net.alerok.plugin.service;
 
-import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.util.Config;
 import net.alerok.plugin.config.EpicMOTDConfig;
