@@ -12,7 +12,11 @@ public class TitleService {
                 title.ref(),
                 Message.raw(title.title()),
                 Message.raw(title.subtitle()),
-                title.epic()
+                title.epic(),
+                "",
+                10,
+                3,
+                3
         );
     }
 
