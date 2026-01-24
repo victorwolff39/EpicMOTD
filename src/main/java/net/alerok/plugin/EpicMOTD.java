@@ -52,7 +52,9 @@ public class EpicMOTD extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.getCommandRegistry().registerCommand(new EMOTDCommandCollection(config));
+        var version = this.getManifest().getVersion().toString();
+
+        this.getCommandRegistry().registerCommand(new EMOTDCommandCollection(config, version));
     }
 
 }

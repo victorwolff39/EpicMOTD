@@ -8,14 +8,7 @@
             "Name": "Victor Wolff"
         }
     ],
-    "Website": "example.org",
     "ServerVersion": "*",
-    "Dependencies": {
-        
-    },
-    "OptionalDependencies": {
-        
-    },
     "DisabledByDefault": false,
     "Main": "net.alerok.plugin.EpicMOTD",
     "IncludesAssetPack": true

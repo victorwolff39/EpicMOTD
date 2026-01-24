@@ -4,14 +4,16 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractComman
 import com.hypixel.hytale.server.core.util.Config;
 import net.alerok.plugin.command.emotd.PreviewCommand;
 import net.alerok.plugin.command.emotd.ReloadCommand;
+import net.alerok.plugin.command.emotd.VersionCommand;
 import net.alerok.plugin.config.EpicMOTDConfig;
 
 public class EMOTDCommandCollection extends AbstractCommandCollection {
 
-    public EMOTDCommandCollection(final Config<EpicMOTDConfig> config) {
+    public EMOTDCommandCollection(final Config<EpicMOTDConfig> config, final String version) {
         super("emotd", "Controls the EpicMOTD plugin.");
 
         addSubCommand(new ReloadCommand(config));
         addSubCommand(new PreviewCommand(config));
+        addSubCommand(new VersionCommand(version));
     }
 }
