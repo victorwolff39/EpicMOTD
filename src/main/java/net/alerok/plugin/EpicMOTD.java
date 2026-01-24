@@ -18,14 +18,15 @@ public class EpicMOTD extends JavaPlugin {
 
     public EpicMOTD(@Nonnull JavaPluginInit init) {
         super(init);
-        LOGGER.atInfo().log("Hello from " + this.getName() + " version " + this.getManifest().getVersion().toString());
+
+        LOGGER.atInfo().log("Initializing " + this.getName() + " version " + this.getManifest().getVersion().toString());
 
         this.config = this.withConfig("config", EpicMOTDConfig.CODEC);
     }
 
     @Override
     protected void setup() {
-        LOGGER.atInfo().log("Setting up plugin " + this.getName());
+        LOGGER.atInfo().log("Setting up plugin " + this.getName() + " version " + this.getManifest().getVersion().toString());
 
         saveConfig();
 

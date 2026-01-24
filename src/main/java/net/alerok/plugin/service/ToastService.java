@@ -4,13 +4,9 @@ import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
 import net.alerok.plugin.model.ToastModel;
 
-import static net.alerok.plugin.EpicMOTD.getPluginLogger;
-
 public class ToastService {
 
     public void showToast(final ToastModel toast) {
-
-        getPluginLogger().atInfo().log("Showing toast " + toast);
 
         NotificationUtil.sendNotification(
                 toast.ref().getPacketHandler(),
