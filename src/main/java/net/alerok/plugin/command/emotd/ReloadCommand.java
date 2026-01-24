@@ -5,6 +5,7 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
+import com.hypixel.hytale.server.core.permissions.HytalePermissions;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -19,6 +20,10 @@ public class ReloadCommand extends AbstractPlayerCommand {
     public ReloadCommand(Config<EpicMOTDConfig> config) {
         super("reload", "Reloads config file.");
         this.config = config;
+
+        requirePermission (
+                HytalePermissions.fromCommand("admin")
+        );
     }
 
     @Override
