@@ -2,6 +2,7 @@ package net.alerok.plugin.command;
 
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -9,19 +10,16 @@ import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.Config;
 import net.alerok.plugin.config.EpicMOTDConfig;
-import net.alerok.plugin.service.WelcomeService;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
-public class MOTDCommand extends AbstractPlayerCommand {
+public class ReloadConfigCommand extends AbstractPlayerCommand {
 
     private final Config<EpicMOTDConfig> config;
+    private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
-    private final WelcomeService welcomeService;
-
-    public MOTDCommand(final Config<EpicMOTDConfig> config) {
-        super("emotd", "Sends the Message of the Day again.");
+    public ReloadConfigCommand(Config<EpicMOTDConfig> config) {
+        super("emotd-reload", "Reloads config file.");
         this.config = config;
-        this.welcomeService = new WelcomeService(config);
     }
 
     @Override
@@ -31,6 +29,8 @@ public class MOTDCommand extends AbstractPlayerCommand {
                            @NonNullDecl PlayerRef playerRef,
                            @NonNullDecl World world
     ) {
-        welcomeService.welcomePlayer(playerRef);
+
+        config.load();
+        LOGGER.atInfo().log("Abacaxi: " + config.get().getTitle());
     }
 }

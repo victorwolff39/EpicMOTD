@@ -3,6 +3,7 @@ package net.alerok.plugin.service;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.util.Config;
 import net.alerok.plugin.config.EpicMOTDConfig;
 import net.alerok.plugin.enumeration.MessageType;
 import net.alerok.plugin.model.MessageModel;
@@ -11,19 +12,20 @@ import net.alerok.plugin.model.ToastModel;
 
 public class WelcomeService {
 
-    private final EpicMOTDConfig config;
+    private final Config<EpicMOTDConfig> config;
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
     private final MessageService messageService = new MessageService();
     private final TitleService titleService = new TitleService();
     private final ToastService toastService = new ToastService();
 
-    public WelcomeService(final EpicMOTDConfig config) {
+    public WelcomeService(final Config<EpicMOTDConfig> config) {
         this.config = config;
     }
 
     public void welcomePlayer(final PlayerRef playerRef) {
-        var messageType = MessageType.fromString(config.getMessageType());
+        var configuration = config.get();
+        var messageType = MessageType.fromString(configuration.getMessageType());
 
         switch (messageType) {
             case TITLE -> showWelcomeTitle(playerRef);
@@ -33,34 +35,37 @@ public class WelcomeService {
     }
 
     private void sendWelcomeMessage(final PlayerRef playerRef) {
+        var configuration = config.get();
 
         messageService.sendMessage(
                 MessageModel.builder()
                         .ref(playerRef)
-                        .body(config.getTitle())
+                        .body(configuration.getTitle())
                         .build()
         );
     }
 
     private void showWelcomeTitle(final PlayerRef playerRef) {
+        var configuration = config.get();
 
         titleService.showTitle(
                 TitleModel.builder()
                         .ref(playerRef)
-                        .title(config.getTitle())
-                        .subtitle(config.getSubtitle())
-                        .epic(config.getEpicTitle())
+                        .title(configuration.getTitle())
+                        .subtitle(configuration.getSubtitle())
+                        .epic(configuration.getEpicTitle())
                         .build()
         );
     }
 
     private void showWelcomeToast(final PlayerRef playerRef) {
+        var configuration = config.get();
 
         toastService.showToast(
                 ToastModel.builder()
                         .ref(playerRef)
-                        .title(config.getTitle())
-                        .subtitle(config.getSubtitle())
+                        .title(configuration.getTitle())
+                        .subtitle(configuration.getSubtitle())
                         .notificationStyle(NotificationStyle.Default)
                         .build()
         );
