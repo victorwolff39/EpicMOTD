@@ -1,11 +1,11 @@
 package net.alerok.plugin.service;
 
 import com.hypixel.hytale.logger.HytaleLogger;
-import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.util.Config;
 import net.alerok.plugin.config.EpicMOTDConfig;
 import net.alerok.plugin.enumeration.MessageType;
+import net.alerok.plugin.enumeration.ToastNotificationStyle;
 import net.alerok.plugin.model.MessageModel;
 import net.alerok.plugin.model.TitleModel;
 import net.alerok.plugin.model.ToastModel;
@@ -66,7 +66,10 @@ public class WelcomeService {
                         .ref(playerRef)
                         .title(configuration.getTitle())
                         .subtitle(configuration.getSubtitle())
-                        .notificationStyle(NotificationStyle.Default)
+                        .notificationStyle(
+                                ToastNotificationStyle.fromString(configuration.getToastNotificationStyle())
+                                        .toNotificationStyle()
+                        )
                         .build()
         );
     }

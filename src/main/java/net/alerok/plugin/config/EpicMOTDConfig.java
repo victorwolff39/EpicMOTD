@@ -15,6 +15,11 @@ public class EpicMOTDConfig {
                             (exConfig, extraInfo) -> exConfig.messageType)
                     .add()
 
+                    .append(new KeyedCodec<>("ToastNotificationStyle", Codec.STRING),
+                            (exConfig, aString, extraInfo) -> exConfig.toastNotificationStyle = aString,
+                            (exConfig, extraInfo) -> exConfig.toastNotificationStyle)
+                    .add()
+
                     .append(new KeyedCodec<>("Title", Codec.STRING),
                             (exConfig, aString, extraInfo) -> exConfig.title = aString,
                             (exConfig, extraInfo) -> exConfig.title)
@@ -32,6 +37,7 @@ public class EpicMOTDConfig {
                     .build();
 
     private String messageType = "TITLE";
+    private String toastNotificationStyle = "SUCCESS";
     private String title = "Welcome to EpicMOTD plugin!";
     private String subtitle = "This is the default MOTD! You can change it in the configuration file at \"./net.alerok_EpicMOTD\".";
     private Boolean epicTitle = true;
