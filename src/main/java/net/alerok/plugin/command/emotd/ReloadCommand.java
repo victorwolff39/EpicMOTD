@@ -1,19 +1,16 @@
 package net.alerok.plugin.command.emotd;
 
-import com.hypixel.hytale.component.Ref;
-import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
-import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
+import com.hypixel.hytale.server.core.command.system.basecommands.AbstractAsyncCommand;
 import com.hypixel.hytale.server.core.permissions.HytalePermissions;
-import com.hypixel.hytale.server.core.universe.PlayerRef;
-import com.hypixel.hytale.server.core.universe.world.World;
-import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.Config;
 import net.alerok.plugin.config.EpicMOTDConfig;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
-public class ReloadCommand extends AbstractPlayerCommand {
+import java.util.concurrent.CompletableFuture;
+
+public class ReloadCommand extends AbstractAsyncCommand {
 
     private final Config<EpicMOTDConfig> config;
 
@@ -26,16 +23,15 @@ public class ReloadCommand extends AbstractPlayerCommand {
         );
     }
 
+    @NonNullDecl
     @Override
-    protected void execute(@NonNullDecl CommandContext commandContext,
-                           @NonNullDecl Store<EntityStore> store,
-                           @NonNullDecl Ref<EntityStore> ref,
-                           @NonNullDecl PlayerRef playerRef,
-                           @NonNullDecl World world
-    ) {
+    protected CompletableFuture<Void> executeAsync(@NonNullDecl CommandContext commandContext) {
+        LOGGER.atInfo().log("Reloading plugin config file");
 
         config.load();
+        commandContext.sendMessage(Message.raw("EpicMOTD config reloaded."));
 
-        playerRef.sendMessage(Message.raw("EpicMOTD config reloaded."));
+        return CompletableFuture.completedFuture(null);
     }
+
 }
