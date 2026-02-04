@@ -1,7 +1,7 @@
 {
     "Group": "net.alerok",
     "Name": "EpicMOTD",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Description": "Transform your MOTD into a cinematic banner that delivers a powerful first impression.",
     "Authors": [
         {
